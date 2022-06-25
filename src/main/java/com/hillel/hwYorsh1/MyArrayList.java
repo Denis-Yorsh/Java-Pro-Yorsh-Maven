@@ -5,10 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class MyArray implements List<MyArray> {
+public class MyArrayList<E> implements List<E> {
+
+    private E[] values;
+    public MyArrayList() {
+        values = (E[]) new Object();
+    }
     @Override
     public int size() {
-        return 0;
+        return size();
     }
 
     @Override
@@ -22,8 +27,8 @@ public class MyArray implements List<MyArray> {
     }
 
     @Override
-    public Iterator<MyArray> iterator() {
-        return null;
+    public Iterator<E> iterator() {
+        return new ArrayIterator<>(values);
     }
 
     @Override
@@ -37,7 +42,7 @@ public class MyArray implements List<MyArray> {
     }
 
     @Override
-    public boolean add(MyArray myArray) {
+    public boolean add(E e) {
         return false;
     }
 
@@ -52,12 +57,12 @@ public class MyArray implements List<MyArray> {
     }
 
     @Override
-    public boolean addAll(Collection<? extends MyArray> c) {
+    public boolean addAll(Collection<? extends E> c) {
         return false;
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends MyArray> c) {
+    public boolean addAll(int index, Collection<? extends E> c) {
         return false;
     }
 
@@ -77,22 +82,22 @@ public class MyArray implements List<MyArray> {
     }
 
     @Override
-    public MyArray get(int index) {
+    public E get(int index) {
         return null;
     }
 
     @Override
-    public MyArray set(int index, MyArray element) {
+    public E set(int index, E element) {
         return null;
     }
 
     @Override
-    public void add(int index, MyArray element) {
+    public void add(int index, E element) {
 
     }
 
     @Override
-    public MyArray remove(int index) {
+    public E remove(int index) {
         return null;
     }
 
@@ -107,17 +112,17 @@ public class MyArray implements List<MyArray> {
     }
 
     @Override
-    public ListIterator<MyArray> listIterator() {
+    public ListIterator<E> listIterator() {
         return null;
     }
 
     @Override
-    public ListIterator<MyArray> listIterator(int index) {
+    public ListIterator<E> listIterator(int index) {
         return null;
     }
 
     @Override
-    public List<MyArray> subList(int fromIndex, int toIndex) {
+    public List<E> subList(int fromIndex, int toIndex) {
         return null;
     }
 }
