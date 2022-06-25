@@ -9,7 +9,7 @@ public class MyArrayList<E> implements List<E> {
 
     private E[] values;
     public MyArrayList() {
-        values = (E[]) new Object();
+        values = (E[]) new Object[0];
     }
     @Override
     public int size() {
@@ -43,7 +43,11 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        return false;
+        E[] temp = values;
+        values = (E[]) new Object[temp.length + 1];
+        System.arraycopy(temp, 0, values, 0, temp.length);
+        values[values.length-1] = e;
+        return true;
     }
 
     @Override
