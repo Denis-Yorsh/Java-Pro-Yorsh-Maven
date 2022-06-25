@@ -11,6 +11,11 @@ public class MyArrayList<E> implements List<E> {
     public MyArrayList() {
         values = (E[]) new Object[0];
     }
+
+    public void update(int index, E e) {
+        values[index] = e;
+    }
+
     @Override
     public int size() {
         return values.length;
