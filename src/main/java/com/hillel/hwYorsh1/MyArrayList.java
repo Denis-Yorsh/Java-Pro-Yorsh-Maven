@@ -43,11 +43,16 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        E[] temp = values;
-        values = (E[]) new Object[temp.length + 1];
-        System.arraycopy(temp, 0, values, 0, temp.length);
-        values[values.length-1] = e;
-        return true;
+        try {
+            E[] temp = values;
+            values = (E[]) new Object[temp.length + 1];
+            System.arraycopy(temp, 0, values, 0, temp.length);
+            values[values.length-1] = e;
+            return true;
+        } catch (ClassCastException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     @Override
