@@ -83,7 +83,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        return values[index];
     }
 
     @Override
