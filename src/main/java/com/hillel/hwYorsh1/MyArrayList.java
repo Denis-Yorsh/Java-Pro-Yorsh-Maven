@@ -23,7 +23,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return values.length == 0;
     }
 
     @Override
