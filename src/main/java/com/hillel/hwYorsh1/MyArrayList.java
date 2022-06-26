@@ -9,10 +9,6 @@ public class MyArrayList<E> implements List<E> {
         values = (E[]) new Object[0];
     }
 
-    public void update(int index, E e) {
-        values[index] = e;
-    }
-
     @Override
     public int size() {
         return values.length;
@@ -114,7 +110,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        return null;
+        return values[index] = element;
     }
 
     @Override
