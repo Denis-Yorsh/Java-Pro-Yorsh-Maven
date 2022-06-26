@@ -88,7 +88,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void clear() {
-
+        values = (E[]) new Object[0];
     }
 
     @Override
