@@ -5,6 +5,7 @@ import java.util.*;
 public class MyArrayList<E> implements List<E> {
 
     private E[] values;
+
     public MyArrayList() {
         values = (E[]) new Object[0];
     }
@@ -22,7 +23,9 @@ public class MyArrayList<E> implements List<E> {
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < values.length; i++) {
-            if (values[i].equals(o)) { return true; }
+            if (values[i].equals(o)) {
+                return true;
+            }
         }
         return false;
     }
@@ -48,7 +51,7 @@ public class MyArrayList<E> implements List<E> {
             E[] temp = values;
             values = (E[]) new Object[temp.length + 1];
             System.arraycopy(temp, 0, values, 0, temp.length);
-            values[values.length-1] = e;
+            values[values.length - 1] = e;
             return true;
         } catch (ClassCastException ex) {
             ex.printStackTrace();
@@ -58,6 +61,19 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
+        int count = 0;
+        int index = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].equals(o)) {
+                count += 1;
+                index = i;
+            } else {
+                return false;
+            }
+        }
+        if (count == 1) {
+            remove(index);
+        }
         return false;
     }
 
@@ -103,8 +119,8 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-            E[] temp = values;
-            values = (E[]) new Object[temp.length + 1];
+        E[] temp = values;
+        values = (E[]) new Object[temp.length + 1];
         System.arraycopy(temp, 0, values, 0, temp.length);
         for (int i = values.length - 1; i > index; i--) {
             values[i] = values[i - 1];
@@ -129,7 +145,9 @@ public class MyArrayList<E> implements List<E> {
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < values.length; i++) {
-            if (values[i].equals(o)) { return i; }
+            if (values[i].equals(o)) {
+                return i;
+            }
         }
         return -1;
     }
@@ -137,7 +155,9 @@ public class MyArrayList<E> implements List<E> {
     @Override
     public int lastIndexOf(Object o) {
         for (int i = values.length - 1; i > 0; i--) {
-            if (values[i].equals(o)) { return i; }
+            if (values[i].equals(o)) {
+                return i;
+            }
         }
         return -1;
     }

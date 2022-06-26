@@ -4,7 +4,8 @@ public class TestClass {
 
     public static void main(String[] args) {
 
-        MyArrayList<Integer> test = new MyArrayList<>();
+        MyArrayList<Object> test = new MyArrayList<>();
+        test.add("Denis");
         test.add(91345);
         test.add(3445);
         test.add(2);
@@ -17,6 +18,7 @@ public class TestClass {
 
         test.set(0, -23);
         test.remove(1);
+        test.remove("Denis");
         test.add(2, 987654321);
 
         System.out.println(test);
