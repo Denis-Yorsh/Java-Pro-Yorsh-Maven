@@ -125,6 +125,9 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].equals(o)) { return i; }
+        }
         return 0;
     }
 
