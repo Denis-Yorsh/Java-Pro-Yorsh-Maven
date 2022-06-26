@@ -131,7 +131,7 @@ public class MyArrayList<E> implements List<E> {
         for (int i = 0; i < values.length; i++) {
             if (values[i].equals(o)) { return i; }
         }
-        return 0;
+        return -1;
     }
 
     @Override
@@ -139,7 +139,7 @@ public class MyArrayList<E> implements List<E> {
         for (int i = values.length - 1; i > 0; i--) {
             if (values[i].equals(o)) { return i; }
         }
-        return 0;
+        return -1;
     }
 
     @Override
@@ -154,7 +154,10 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        E[] temp = values;
+        values = (E[]) new Object[toIndex - fromIndex];
+        System.arraycopy(temp, fromIndex, values, 0, toIndex - 1);
+        return List.of(values);
     }
 
     @Override
