@@ -42,18 +42,6 @@ public class MyArrayList<E> implements List<E> {
         return null;
     }
 
-    public void delete(int index) {
-        try {
-            E[] temp = values;
-            values = (E[]) new Object[temp.length - 1];
-            System.arraycopy(temp, 0, values, 0, index);
-            int amountElemAfterIndex = temp.length - index - 1; // amount
-            System.arraycopy(temp, index + 1, values, index, amountElemAfterIndex);
-        } catch (ClassCastException ex) {
-            ex.printStackTrace();
-        }
-    }
-
     @Override
     public boolean add(E e) {
         try {
@@ -120,6 +108,15 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
+        try {
+            E[] temp = values;
+            values = (E[]) new Object[temp.length - 1];
+            System.arraycopy(temp, 0, values, 0, index);
+            int amountElemAfterIndex = temp.length - index - 1; // amount
+            System.arraycopy(temp, index + 1, values, index, amountElemAfterIndex);
+        } catch (ClassCastException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
 
