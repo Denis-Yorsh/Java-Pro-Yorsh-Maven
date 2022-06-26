@@ -23,11 +23,12 @@ public class TestClass {
         System.out.println();
 
         System.out.println("isEmpty: " + test.isEmpty());
-        System.out.println("get: "+ test.get(0));
-        System.out.println("size: "+ test.size());
-        System.out.println("contains: "+ test.contains(2));
-        System.out.println("indexOf: "+ test.indexOf(2));
-        System.out.println("lastIndexOf: "+ test.lastIndexOf(2));
+        System.out.println("get: " + test.get(0));
+        System.out.println("size: " + test.size());
+        System.out.println("contains: " + test.contains(2));
+        System.out.println("indexOf: " + test.indexOf(2));
+        System.out.println("lastIndexOf: " + test.lastIndexOf(2));
+        System.out.println("subList: " + test.subList(1, 3));
 
         System.out.println();
         System.out.println(test);

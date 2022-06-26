@@ -123,7 +123,7 @@ public class MyArrayList<E> implements List<E> {
         } catch (ClassCastException ex) {
             ex.printStackTrace();
         }
-        return null;
+        return (E) values;
     }
 
     @Override
