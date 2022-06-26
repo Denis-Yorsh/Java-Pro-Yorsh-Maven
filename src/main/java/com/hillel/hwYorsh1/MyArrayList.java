@@ -103,7 +103,13 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-
+            E[] temp = values;
+            values = (E[]) new Object[temp.length + 1];
+        System.arraycopy(temp, 0, values, 0, temp.length);
+        for (int i = values.length - 1; i > index; i--) {
+            values[i] = values[i - 1];
+        }
+        values[index] = element;
     }
 
     @Override
