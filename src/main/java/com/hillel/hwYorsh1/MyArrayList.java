@@ -136,6 +136,9 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public int lastIndexOf(Object o) {
+        for (int i = values.length - 1; i > 0; i--) {
+            if (values[i].equals(o)) { return i; }
+        }
         return 0;
     }
 
