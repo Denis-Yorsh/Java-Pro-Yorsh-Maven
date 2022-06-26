@@ -25,6 +25,9 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].equals(o)) { return true; }
+        }
         return false;
     }
 
@@ -152,5 +155,18 @@ public class MyArrayList<E> implements List<E> {
     @Override
     public String toString() {
         return Arrays.toString(values);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyArrayList<?> that = (MyArrayList<?>) o;
+        return Arrays.equals(values, that.values);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(values);
     }
 }
