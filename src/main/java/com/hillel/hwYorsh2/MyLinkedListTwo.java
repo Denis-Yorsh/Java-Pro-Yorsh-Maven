@@ -279,7 +279,21 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int index = size;
+        if (o == null) {
+            for (Node<E> x = last; x != null; x = x.prev) {
+                index--;
+                if (x.item == null)
+                    return index;
+            }
+        } else {
+            for (Node<E> x = last; x != null; x = x.prev) {
+                index--;
+                if (o.equals(x.item))
+                    return index;
+            }
+        }
+        return -1;
     }
 
     @Override
