@@ -9,8 +9,8 @@ public class MyLinkedList<E> implements List<E>, Deque<E> {
     private int size = 0;
 
     public MyLinkedList() {
-        lastNode = new Node<E>(null, null, lastNode);
-        firstNode = new Node<E>(null, firstNode, null);
+        lastNode = new Node<E>(null, firstNode, null);
+        firstNode = new Node<E>(null, null, lastNode);
     }
 
     @Override
@@ -199,8 +199,11 @@ public class MyLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public E get(int index) {
-
-        return null;
+        Node<E> target = firstNode.getNextElement();
+        for (int i = 0; i < index; i++) {
+            target = getNextElement(target);
+        }
+        return target.getCurrentElement();
     }
 
     @Override
@@ -241,6 +244,10 @@ public class MyLinkedList<E> implements List<E>, Deque<E> {
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    private Node<E> getNextElement(Node<E> current) {
+        return current.getNextElement();
     }
 
     private class Node<E> {
