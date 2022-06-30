@@ -274,7 +274,8 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        checkElementIndex(index);
+        return node(index).item;
     }
 
     @Override
