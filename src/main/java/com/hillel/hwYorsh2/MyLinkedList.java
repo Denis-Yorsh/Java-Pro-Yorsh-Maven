@@ -15,15 +15,19 @@ public class MyLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public void addFirst(E e) {
-
+        Node<E> first = firstNode;
+        first.setCurrentElement(e);
+        firstNode = new Node<E>(null, null, first);
+        first.setNextElement(lastNode);
+        size++;
     }
 
     @Override
     public void addLast(E e) {
-        Node<E> prev = lastNode;
-        prev.setCurrentElement(e);
-        lastNode = new Node<E>(null, prev, null);
-        prev.setNextElement(lastNode);
+        Node<E> last = lastNode;
+        last.setCurrentElement(e);
+        lastNode = new Node<E>(null, last, null);
+        last.setPrevElement(firstNode);
         size++;
     }
 
