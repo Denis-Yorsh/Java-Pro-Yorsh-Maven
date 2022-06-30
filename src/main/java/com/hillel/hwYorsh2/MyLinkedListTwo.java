@@ -203,7 +203,7 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
     @Override
     public <T> T[] toArray(T[] a) {
         if (a.length < size)
-            a = (T[])java.lang.reflect.Array.newInstance(
+            a = (T[]) java.lang.reflect.Array.newInstance(
                     a.getClass().getComponentType(), size);
         int i = 0;
         Object[] result = a;
@@ -298,7 +298,12 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public void add(int index, E element) {
+        checkPositionIndex(index);
 
+        if (index == size)
+            addLast(element);
+        else
+            linkBefore(element, node(index));
     }
 
     @Override
@@ -360,6 +365,19 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
         return null;
     }
 
+    void linkBefore(E e, Node<E> succ) {
+        // assert succ != null;
+        final Node<E> pred = succ.prev;
+        final Node<E> newNode = new Node<>(pred, e, succ);
+        succ.prev = newNode;
+        if (pred == null)
+            first = newNode;
+        else
+            pred.next = newNode;
+        size++;
+        modCount++;
+    }
+
     E unlink(Node<E> x) {
         // assert x != null;
         final E element = x.item;
@@ -385,6 +403,7 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
         modCount++;
         return element;
     }
+
     private E unlinkFirst(Node<E> f) {
         final E element = f.item;
         final Node<E> next = f.next;
@@ -421,12 +440,21 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
     }
 
+    private void checkPositionIndex(int index) {
+        if (!isPositionIndex(index))
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+    }
+
     private boolean isElementIndex(int index) {
         return index >= 0 && index < size;
     }
 
     private String outOfBoundsMsg(int index) {
-        return "Index: "+index+", Size: "+size;
+        return "Index: " + index + ", Size: " + size;
+    }
+
+    private boolean isPositionIndex(int index) {
+        return index >= 0 && index <= size;
     }
 
     Node<E> node(int index) {
