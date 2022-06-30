@@ -37,12 +37,14 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean offerFirst(E e) {
-        return false;
+        addFirst(e);
+        return true;
     }
 
     @Override
     public boolean offerLast(E e) {
-        return false;
+        addLast(e);
+        return true;
     }
 
     @Override
