@@ -114,7 +114,7 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E remove() {
-        return null;
+        return removeFirst();
     }
 
     @Override
