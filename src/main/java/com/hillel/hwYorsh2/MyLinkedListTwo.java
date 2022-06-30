@@ -65,12 +65,14 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E pollFirst() {
-        return null;
+        final Node<E> f = first;
+        return (f == null) ? null : unlinkFirst(f);
     }
 
     @Override
     public E pollLast() {
-        return null;
+        final Node<E> l = last;
+        return (l == null) ? null : unlinkLast(l);
     }
 
     @Override
