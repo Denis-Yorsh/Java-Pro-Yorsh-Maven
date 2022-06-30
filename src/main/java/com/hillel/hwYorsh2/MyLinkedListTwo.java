@@ -255,7 +255,11 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E set(int index, E element) {
-        return null;
+        checkElementIndex(index);
+        Node<E> x = node(index);
+        E oldVal = x.item;
+        x.item = element;
+        return oldVal;
     }
 
     @Override
