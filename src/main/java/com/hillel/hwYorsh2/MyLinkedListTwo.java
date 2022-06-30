@@ -189,6 +189,21 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean remove(Object o) {
+        if (o == null) {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (x.item == null) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        } else {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (o.equals(x.item)) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -267,6 +282,31 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
         return null;
     }
 
+    E unlink(Node<E> x) {
+        // assert x != null;
+        final E element = x.item;
+        final Node<E> next = x.next;
+        final Node<E> prev = x.prev;
+
+        if (prev == null) {
+            first = next;
+        } else {
+            prev.next = next;
+            x.prev = null;
+        }
+
+        if (next == null) {
+            last = prev;
+        } else {
+            next.prev = prev;
+            x.next = null;
+        }
+
+        x.item = null;
+        size--;
+        modCount++;
+        return element;
+    }
     private E unlinkFirst(Node<E> f) {
         final E element = f.item;
         final Node<E> next = f.next;
