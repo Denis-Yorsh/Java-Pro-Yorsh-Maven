@@ -148,7 +148,18 @@ public class MyLinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            int counter = 0;
+            @Override
+            public boolean hasNext() {
+                return counter < size;
+            }
+
+            @Override
+            public E next() {
+                return get(counter++);
+            }
+        };
     }
 
     @Override
