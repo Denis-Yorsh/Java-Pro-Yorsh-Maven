@@ -119,7 +119,8 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E poll() {
-        return null;
+        final Node<E> f = first;
+        return (f == null) ? null : unlinkFirst(f);
     }
 
     @Override
@@ -154,7 +155,7 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return false;
     }
 
     @Override
