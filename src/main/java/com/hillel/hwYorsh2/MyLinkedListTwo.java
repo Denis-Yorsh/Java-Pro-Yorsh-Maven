@@ -115,7 +115,8 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean offer(E e) {
-        return false;
+        addFirst(e);
+        return true;
     }
 
     @Override
@@ -141,12 +142,12 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public void push(E e) {
-
+        addFirst(e);
     }
 
     @Override
     public E pop() {
-        return null;
+        return removeFirst();
     }
 
     @Override
