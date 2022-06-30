@@ -147,12 +147,13 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public E element() {
-        return null;
+        return getFirst();
     }
 
     @Override
     public E peek() {
-        return null;
+        final Node<E> f = first;
+        return (f == null) ? null : f.item;
     }
 
     @Override
