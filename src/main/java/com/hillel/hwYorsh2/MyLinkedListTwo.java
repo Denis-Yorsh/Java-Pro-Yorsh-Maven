@@ -183,7 +183,8 @@ public class MyLinkedListTwo<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean add(E e) {
-        return false;
+        addLast(e);
+        return true;
     }
 
     @Override
