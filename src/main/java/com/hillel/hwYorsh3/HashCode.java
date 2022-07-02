@@ -35,4 +35,14 @@ public class HashCode {
                 ", age=" + age +
                 '}';
     }
+
+    private static int hashCodeNumber(Object object) {
+        int hashCode = 0;
+        String stringObject = String.valueOf(object);
+        char[] chars = stringObject.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            hashCode += chars[i];
+        }
+        return hashCode;
+    }
 }
