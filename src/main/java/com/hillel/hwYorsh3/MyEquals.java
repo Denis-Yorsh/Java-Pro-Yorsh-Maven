@@ -16,10 +16,7 @@ public class MyEquals {
 
     @Override
     public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Equals equals = (Equals) o;
-       // age == equals.age && Objects.equals(firstName, equals.firstName) && Objects.equals(lastName, equals.lastName);
+        if (getClass() != o.getClass()) { return false; }
         return myEquals(o, firstName)
                 && myEquals(o, lastName)
                 && myEquals(o, age) ;
