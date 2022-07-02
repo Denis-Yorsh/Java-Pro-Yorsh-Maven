@@ -38,7 +38,7 @@ public class MyHashCode {
                 '}';
     }
 
-    private static int hashCodeNumber(Object object) {
+    private int hashCodeNumber(Object object) {
         int hashCode = 0;
         String stringObject = String.valueOf(object);
         char[] chars = stringObject.toCharArray();
