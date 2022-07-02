@@ -2,13 +2,13 @@ package com.hillel.hwYorsh3;
 
 import java.util.Objects;
 
-public class HashCode {
+public class MyHashCode {
 
-    String firstName;
-    String lastName;
-    int age;
+    private String firstName;
+    private String lastName;
+    private int age;
 
-    public HashCode(String firstName, String lastName, int age) {
+    public MyHashCode(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -18,13 +18,15 @@ public class HashCode {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HashCode hashCode = (HashCode) o;
-        return age == hashCode.age && Objects.equals(firstName, hashCode.firstName) && Objects.equals(lastName, hashCode.lastName);
+        MyHashCode hashCode = (MyHashCode) o;
+        return age == hashCode.age
+                && Objects.equals(firstName, hashCode.firstName)
+                && Objects.equals(lastName, hashCode.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, age);
+        return hashCodeNumber(firstName) + hashCodeNumber(lastName) + hashCodeNumber(age);
     }
 
     @Override
@@ -41,7 +43,7 @@ public class HashCode {
         String stringObject = String.valueOf(object);
         char[] chars = stringObject.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            hashCode += chars[i];
+            hashCode += chars[i] * 2;
         }
         return hashCode;
     }
