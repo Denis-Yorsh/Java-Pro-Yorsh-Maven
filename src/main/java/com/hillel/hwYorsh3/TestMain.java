@@ -28,5 +28,8 @@ public class TestMain {
         System.out.println("humanEight.hashCode() - " + humanEight.hashCode());
         System.out.println("humanFive.equals(humanEight) - " + humanFive.equals(humanEight));
         System.out.println("humanFive.equals(humanEight) - " + humanFive.equals(humanSix));
+
+        System.out.println("\nTest equals class\n");
+        System.out.println("humanFive class MyEquals vs humanOne class MyHashCode - " + humanFive.equals(humanOne));
     }
 }

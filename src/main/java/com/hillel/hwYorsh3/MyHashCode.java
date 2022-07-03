@@ -43,7 +43,7 @@ public class MyHashCode {
         String stringObject = String.valueOf(object);
         char[] chars = stringObject.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            hashCode += chars[i] * 2;
+            hashCode += chars[i] % 2 == 0 ? chars[i] * 5 : chars[i] * 7;
         }
         return hashCode;
     }
