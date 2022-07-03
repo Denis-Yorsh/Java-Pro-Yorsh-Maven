@@ -11,17 +11,17 @@ public class Reference {
 
     public static void main(String[] args) {
         //Strong reference
-        MyHashCode myHashCode = new MyHashCode("Denis", "Yorsh", 39);
+        Human human = new Human();
 
         // Soft reference
-        SoftReference<MyHashCode> softReference = new SoftReference<>(myHashCode);
+        SoftReference<Human> softReference = new SoftReference<>(human);
         //Weak reference
-        WeakReference<MyHashCode> weakReference = new WeakReference<>(myHashCode);
+        WeakReference<Human> weakReference = new WeakReference<>(human);
         //Phantom reference
-        ReferenceQueue<MyHashCode> referenceQueue = new ReferenceQueue<>();
-        PhantomReference<MyHashCode> phantomReference = new PhantomReference<>(myHashCode, referenceQueue);
+        ReferenceQueue<Human> referenceQueue = new ReferenceQueue<>();
+        PhantomReference<Human> phantomReference = new PhantomReference<>(human, referenceQueue);
 
-        myHashCode = null;
+        human = null;
 
         System.out.println(softReference.get());
         System.out.println(weakReference.get());
@@ -44,5 +44,9 @@ public class Reference {
         System.out.println(phantomReference.get());
 
     }
+
+}
+
+class Human {
 
 }
