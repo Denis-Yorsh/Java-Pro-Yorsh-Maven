@@ -9,13 +9,9 @@ public abstract class Check {
         this.counter = counter;
     }
 
-    protected abstract double priceAll();
-
-    @Override
-    public String toString() {
-        return "Check {" +
-                "counter=" + counter +
-                ", DOLLARS=" + DOLLARS +
-                '}';
+    public char getDOLLARS() {
+        return DOLLARS;
     }
+
+    protected abstract double priceAll();
 }

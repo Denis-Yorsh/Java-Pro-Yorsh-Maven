@@ -1,7 +1,6 @@
-package com.hillel.hwYorsh4.Menu;
+package com.hillel.hwYorsh4.MenuAndPrice;
 
 import com.hillel.hwYorsh4.Check;
-import com.hillel.hwYorsh4.Price;
 
 public class Salad extends Check {
 
@@ -10,7 +9,7 @@ public class Salad extends Check {
     }
 
     @Override
-    protected double priceAll() {
+    public double priceAll() {
         return Price.getSalad();
     }
 }

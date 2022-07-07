@@ -15,7 +15,7 @@ public class Welcome {
         String text = "Make your choice 0 - EXIT\n";
         List<Integer> choice = new LinkedList<>();
         humanChoice(text, choice);
-        MethodsCrazyMenu.check(choice);
+        MethodsCrazyMenu.checkTotal(choice);
     }
 
     private static void humanChoice(String text, List<Integer> choice) {

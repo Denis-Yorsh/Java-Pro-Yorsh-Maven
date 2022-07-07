@@ -1,4 +1,4 @@
-package com.hillel.hwYorsh4;
+package com.hillel.hwYorsh4.MenuAndPrice;
 
 public class Price {
 
