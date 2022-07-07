@@ -35,3 +35,8 @@
    Soft reference, Weak reference, Phantom reference)
 3. Разобраться с методом equals() - симметричность, рефлексивность, 
    транзитивность. Написать свою реализацию.
+
+### Homework 4:
+
+Написать свой проектик на принципах ООП с использованием 
+List, HashSet, HashMap
