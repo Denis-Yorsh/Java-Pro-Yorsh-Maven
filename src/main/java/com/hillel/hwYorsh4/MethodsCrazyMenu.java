@@ -15,6 +15,7 @@ public class MethodsCrazyMenu {
         crazyMenu.add("7 - Coffee");
         crazyMenu.add("8 - Cola");
         crazyMenu.add("9 - Water");
+        crazyMenu.add("0 - EXIT");
         return crazyMenu;
     }
 }
