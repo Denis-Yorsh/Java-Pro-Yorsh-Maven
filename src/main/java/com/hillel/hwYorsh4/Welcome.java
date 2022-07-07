@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Welcome {
 
     protected static void welcomeHuman() {
-        System.out.println("Welcome to the Crazy Restaurant\nHere is your menu");
+        System.out.println("Welcome to the 🤪Crazy🤪 Restaurant\nHere is your menu");
         crazyMenu();
     }
 
