@@ -47,12 +47,11 @@ public class MethodsCrazyMenu {
         menu.put(9, new Water(1));
 
         StringBuilder namePrice = new StringBuilder();
-        namePrice
+        return namePrice
                 .append(menu.get(number).getClass().getSimpleName())
                 .append(" ")
                 .append(((Check) menu.get(number)).priceAll())
                 .append(((Check) menu.get(1)).getDOLLARS());
-        return namePrice;
     }
 
     protected static double databaseSum(int number) {
@@ -67,8 +66,7 @@ public class MethodsCrazyMenu {
         menu.put(8, new Cola(1));
         menu.put(9, new Water(1));
 
-        double sun = ((Check) menu.get(number)).priceAll();
-        return sun;
+        return ((Check) menu.get(number)).priceAll();
     }
 
     protected static HashSet<String> crazyMenu() {
