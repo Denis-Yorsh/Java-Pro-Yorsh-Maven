@@ -87,6 +87,6 @@ public class MethodsCrazyMenu {
     protected static void toStringCheck(StringBuilder name, double sun) {
         System.out.println("You ordered\n"+ name);
         System.out.printf("Total sum = %.2f", sun);
-        System.out.println("Enjoy your meal");
+        System.out.println("\nEnjoy your meal");
     }
 }
