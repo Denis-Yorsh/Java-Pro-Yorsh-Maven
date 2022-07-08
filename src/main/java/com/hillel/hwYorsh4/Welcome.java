@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Welcome {
-
+    // greetings
     protected static void welcomeHuman() {
         System.out.println("Welcome to the 🤪Crazy🤪 Restaurant\nHere is your menu");
         crazyMenu();
     }
-
+    // user choice
     protected static void crazyMenu() {
-        String text = "Make your choice 0 - EXIT\n";
+        String text = "Make your choice 0 - 👻EXIT\n";
         List<Integer> choice = new LinkedList<>();
         humanChoice(text, choice);
         MethodsCrazyMenu.checkTotal(choice);
     }
-
+    // selection logic
     private static void humanChoice(String text, List<Integer> choice) {
         boolean inputDigits = false;
         String noChoice = "Try again";

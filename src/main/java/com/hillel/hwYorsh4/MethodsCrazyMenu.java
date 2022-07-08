@@ -7,13 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 
 public class MethodsCrazyMenu {
-
+    // user selection processing
     protected static void checkTotal(List<Integer> humanChoice) {
         StringBuilder name = checkTotalName(humanChoice);
         double sum = checkTotalSum(humanChoice);
         toStringCheck(name, sum);
     }
-
+    // data acquisition and processing databaseName
     protected static StringBuilder checkTotalName(List<Integer> humanChoice) {
         StringBuilder name = new StringBuilder();
         for (Integer integer : humanChoice) {
@@ -23,7 +23,7 @@ public class MethodsCrazyMenu {
         }
         return name;
     }
-
+    // data acquisition and processing databaseSum
     protected static double checkTotalSum(List<Integer> humanChoice) {
         double sun = 0;
         for (Integer integer : humanChoice) {
@@ -33,42 +33,42 @@ public class MethodsCrazyMenu {
         }
         return sun;
     }
-
+    // food database
     protected static StringBuilder databaseName(int number) {
-        HashMap<Integer, Object> menu = new HashMap<>();
-        menu.put(1, new Borscht(1));
-        menu.put(2, new Soup(1));
-        menu.put(3, new Potato(1));
-        menu.put(4, new Steak(1));
-        menu.put(5, new Salad(1));
-        menu.put(6, new Tea(1));
-        menu.put(7, new Coffee(1));
-        menu.put(8, new Cola(1));
-        menu.put(9, new Water(1));
+        HashMap<Integer, Check> menu = new HashMap<>();
+        menu.put(1, new Borscht());
+        menu.put(2, new Soup());
+        menu.put(3, new Potato());
+        menu.put(4, new Steak());
+        menu.put(5, new Salad());
+        menu.put(6, new Tea());
+        menu.put(7, new Coffee());
+        menu.put(8, new Cola());
+        menu.put(9, new Water());
 
         StringBuilder namePrice = new StringBuilder();
         return namePrice
                 .append(menu.get(number).getClass().getSimpleName())
                 .append(" ")
-                .append(((Check) menu.get(number)).priceAll())
-                .append(((Check) menu.get(1)).getDOLLARS());
+                .append(menu.get(number).priceAll())
+                .append(menu.get(number).getDOLLARS());
     }
-
+    // food database
     protected static double databaseSum(int number) {
-        HashMap<Integer, Object> menu = new HashMap<>();
-        menu.put(1, new Borscht(1));
-        menu.put(2, new Soup(1));
-        menu.put(3, new Potato(1));
-        menu.put(4, new Steak(1));
-        menu.put(5, new Salad(1));
-        menu.put(6, new Tea(1));
-        menu.put(7, new Coffee(1));
-        menu.put(8, new Cola(1));
-        menu.put(9, new Water(1));
+        HashMap<Integer, Check> menu = new HashMap<>();
+        menu.put(1, new Borscht());
+        menu.put(2, new Soup());
+        menu.put(3, new Potato());
+        menu.put(4, new Steak());
+        menu.put(5, new Salad());
+        menu.put(6, new Tea());
+        menu.put(7, new Coffee());
+        menu.put(8, new Cola());
+        menu.put(9, new Water());
 
-        return ((Check) menu.get(number)).priceAll();
+        return menu.get(number).priceAll();
     }
-
+    // list of dishes present
     protected static HashSet<String> crazyMenu() {
         HashSet<String> crazyMenu = new HashSet<>();
         crazyMenu.add("1 - Borscht");
@@ -83,10 +83,10 @@ public class MethodsCrazyMenu {
         crazyMenu.add("0 - EXIT");
         return crazyMenu;
     }
-
+    // formation of a check
     protected static void toStringCheck(StringBuilder name, double sun) {
         System.out.println("You ordered\n"+ name);
-        System.out.printf("Total sum = %.2f", sun);
+        System.out.printf("Total sum = %.2f%s", sun, new Borscht().getDOLLARS());
         System.out.println("\nEnjoy your meal");
     }
 }
