@@ -15,14 +15,6 @@ public class CatNewAddress {
         System.out.println("New address = " + newCatList);
     }
 
-    private static List<Cat> getCats() {
-        List<Cat> catList = new ArrayList<>();
-        catList.add(new Kisa("Kisa", 2, "New York"));
-        catList.add(new MayMay("May May", 1, "London"));
-        catList.add(new Myrka("Myrka", 3, "Paris"));
-        return catList;
-    }
-
     // We change the address
     public static List<Cat> moving(List<Cat> catList){
         // loop through on catList calling a method setAddress
@@ -30,6 +22,15 @@ public class CatNewAddress {
         for (Cat cat : catList) {
             cat.setAddress("Ukraine");
         }
+        return catList;
+    }
+
+    // database Cat
+    private static List<Cat> getCats() {
+        List<Cat> catList = new ArrayList<>();
+        catList.add(new Kisa("Kisa", 2, "New York"));
+        catList.add(new MayMay("May May", 1, "London"));
+        catList.add(new Myrka("Myrka", 3, "Paris"));
         return catList;
     }
 }
