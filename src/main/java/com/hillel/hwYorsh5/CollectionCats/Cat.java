@@ -3,9 +3,9 @@ package com.hillel.hwYorsh5.CollectionCats;
 import java.util.Objects;
 
 public class Cat {
-    String name;
-    int age;
-    String address;
+    private String name;
+    private int age;
+    private String address;
 
     public Cat(String name, int age, String address) {
         this.name = name;
