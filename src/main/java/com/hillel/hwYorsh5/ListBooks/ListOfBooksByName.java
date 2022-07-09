@@ -17,7 +17,7 @@ public class ListOfBooksByName {
         System.out.println("Set\n" + bookSet);
     }
 
-    public static Set<Book> listBooksByAuthors (Map<String, Book> bookMap, String name){
+    public static Set<Book> listBooksByAuthors(Map<String, Book> bookMap, String name) {
         Set<Book> stringSet = new HashSet<>();
         // getting the keys
         Set<String> stringList = bookMap.keySet();

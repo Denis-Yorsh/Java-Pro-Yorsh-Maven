@@ -16,7 +16,7 @@ public class CatNewAddress {
     }
 
     // We change the address
-    public static List<Cat> moving(List<Cat> catList){
+    public static List<Cat> moving(List<Cat> catList) {
         // loop through on catList calling a method setAddress
         // and change the address
         for (Cat cat : catList) {

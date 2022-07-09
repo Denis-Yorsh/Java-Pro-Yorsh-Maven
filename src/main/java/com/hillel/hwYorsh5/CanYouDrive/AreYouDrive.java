@@ -21,7 +21,8 @@ public class AreYouDrive {
         System.out.println("You can drive a car\n" + isYesDriveCar);
         System.out.println("You don't not drive a car\n" + isNoDriveCar);
     }
-        // condition check
+
+    // condition check
     private static void yesOrNo(List<People> list, List<People> isYesDriveCar, List<People> isNoDriveCar) {
         boolean isYes;
         for (People people : list) {
