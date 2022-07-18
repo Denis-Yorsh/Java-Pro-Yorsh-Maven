@@ -12,6 +12,7 @@ public class Main {
 
 
         public Board() {
+            // when creating an object in the constructor, it was not declared a reference this.balls
             this.balls = new ArrayList<>(List.of(new Ball(), new Ball(), new Ball()));
         }
 
