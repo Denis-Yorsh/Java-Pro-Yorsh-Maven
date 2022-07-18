@@ -57,7 +57,7 @@ public class TenUrl {
         for (int i = 0; i < stringList.size(); i++) {
             array = stringList.get(i).split("/");
             arrayTwo = array[0].split("\\.");
-            domain.add(arrayTwo[arrayTwo.length-1]);
+            domain.add(arrayTwo[arrayTwo.length - 1]);
         }
         List<String> listDomain = new ArrayList<>(setToDomainList(domain));
 
@@ -77,7 +77,7 @@ public class TenUrl {
         return listDomain;
     }
 
-    private static Map<String, Integer> domainEqualsFileList(List<String> listDomain , List<String> fileToListFirst) {
+    private static Map<String, Integer> domainEqualsFileList(List<String> listDomain, List<String> fileToListFirst) {
         Map<String, Integer> stringIntegerMap = new HashMap<>();
 
         int count = 0;

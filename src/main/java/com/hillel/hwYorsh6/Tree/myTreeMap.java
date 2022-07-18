@@ -42,7 +42,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
     }
 
     public boolean containsValue(Object value) {
-        for (Entry<K,V> e = getFirstEntry(); e != null; e = successor(e))
+        for (Entry<K, V> e = getFirstEntry(); e != null; e = successor(e))
             if (valEquals(value, e.value))
                 return true;
         return false;
@@ -50,8 +50,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
 
     public void putAll(Map<? extends K, ? extends V> map) {
         int mapSize = map.size();
-        if (size==0 && mapSize!=0 && map instanceof SortedMap) {
-            Comparator<?> c = ((SortedMap<?,?>)map).comparator();
+        if (size == 0 && mapSize != 0 && map instanceof SortedMap) {
+            Comparator<?> c = ((SortedMap<?, ?>) map).comparator();
             if (c == comparator || (c != null && c.equals(comparator))) {
                 ++modCount;
                 try {
@@ -66,8 +66,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
     }
 
     public V get(Object key) {
-        Entry<K,V> p = getEntry(key);
-        return (p==null ? null : p.value);
+        Entry<K, V> p = getEntry(key);
+        return (p == null ? null : p.value);
     }
 
     @Override
@@ -127,8 +127,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
 
     @Override
     public Entry<K, V> pollFirstEntry() {
-        Entry<K,V> p = getFirstEntry();
-        Map.Entry<K,V> result = exportEntry(p);
+        Entry<K, V> p = getFirstEntry();
+        Map.Entry<K, V> result = exportEntry(p);
         if (p != null)
             deleteEntry(p);
         return (Entry<K, V>) result;
@@ -136,8 +136,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
 
     @Override
     public Entry<K, V> pollLastEntry() {
-        Entry<K,V> p = getLastEntry();
-        Map.Entry<K,V> result = exportEntry(p);
+        Entry<K, V> p = getLastEntry();
+        Map.Entry<K, V> result = exportEntry(p);
         if (p != null)
             deleteEntry(p);
         return (Entry<K, V>) result;
@@ -203,12 +203,12 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return key(getLastEntry());
     }
 
-    static <K,V> K keyOrNull(Entry<K,V> e) {
+    static <K, V> K keyOrNull(Entry<K, V> e) {
         return (e == null) ? null : e.key;
     }
 
 
-    static <K,V> Map.Entry<K,V> exportEntry(Entry<K,V> e) {
+    static <K, V> Map.Entry<K, V> exportEntry(Entry<K, V> e) {
         return (e == null) ? null :
                 new AbstractMap.SimpleImmutableEntry<>(e);
     }
@@ -220,7 +220,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
     }
 
     public V remove(Object key) {
-        Entry<K,V> p = getEntry(key);
+        Entry<K, V> p = getEntry(key);
         if (p == null)
             return null;
 
@@ -228,21 +228,22 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         deleteEntry(p);
         return oldValue;
     }
-    private void deleteEntry(Entry<K,V> p) {
+
+    private void deleteEntry(Entry<K, V> p) {
         modCount++;
         size--;
 
         // If strictly internal, copy successor's element to p and then make p
         // point to successor.
         if (p.left != null && p.right != null) {
-            Entry<K,V> s = successor(p);
+            Entry<K, V> s = successor(p);
             p.key = s.key;
             p.value = s.value;
             p = s;
         } // p has 2 children
 
         // Start fixup at replacement node, if it exists.
-        Entry<K,V> replacement = (p.left != null ? p.left : p.right);
+        Entry<K, V> replacement = (p.left != null ? p.left : p.right);
 
         if (replacement != null) {
             // Link replacement to parent
@@ -250,7 +251,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
             if (p.parent == null)
                 root = replacement;
             else if (p == p.parent.left)
-                p.parent.left  = replacement;
+                p.parent.left = replacement;
             else
                 p.parent.right = replacement;
 
@@ -276,17 +277,17 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         }
     }
 
-    static <K,V> Entry<K,V> successor(Entry<K,V> t) {
+    static <K, V> Entry<K, V> successor(Entry<K, V> t) {
         if (t == null)
             return null;
         else if (t.right != null) {
-            Entry<K,V> p = t.right;
+            Entry<K, V> p = t.right;
             while (p.left != null)
                 p = p.left;
             return p;
         } else {
-            Entry<K,V> p = t.parent;
-            Entry<K,V> ch = t;
+            Entry<K, V> p = t.parent;
+            Entry<K, V> ch = t;
             while (p != null && ch == p.right) {
                 ch = p;
                 p = p.parent;
@@ -295,7 +296,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         }
     }
 
-    final Entry<K,V> getEntry(Object key) {
+    final Entry<K, V> getEntry(Object key) {
         // Offload comparator-based version for sake of performance
         if (comparator != null)
             return getEntryUsingComparator(key);
@@ -303,7 +304,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
             throw new NullPointerException();
         @SuppressWarnings("unchecked")
         Comparable<? super K> k = (Comparable<? super K>) key;
-        Entry<K,V> p = root;
+        Entry<K, V> p = root;
         while (p != null) {
             int cmp = k.compareTo(p.key);
             if (cmp < 0)
@@ -316,12 +317,12 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    final Entry<K,V> getEntryUsingComparator(Object key) {
+    final Entry<K, V> getEntryUsingComparator(Object key) {
         @SuppressWarnings("unchecked")
         K k = (K) key;
         Comparator<? super K> cpr = comparator;
         if (cpr != null) {
-            Entry<K,V> p = root;
+            Entry<K, V> p = root;
             while (p != null) {
                 int cmp = cpr.compare(k, p.key);
                 if (cmp < 0)
@@ -335,16 +336,16 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    final Entry<K,V> getFirstEntry() {
-        Entry<K,V> p = root;
+    final Entry<K, V> getFirstEntry() {
+        Entry<K, V> p = root;
         if (p != null)
             while (p.left != null)
                 p = p.left;
         return p;
     }
 
-    final Entry<K,V> getLastEntry() {
-        Entry<K,V> p = root;
+    final Entry<K, V> getLastEntry() {
+        Entry<K, V> p = root;
         if (p != null)
             while (p.right != null)
                 p = p.right;
@@ -360,32 +361,32 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 it, str, defaultVal);
     }
 
-    private final Entry<K,V> buildFromSorted(int level, int lo, int hi,
-                                                     int redLevel,
-                                                     Iterator<?> it,
-                                                     java.io.ObjectInputStream str,
-                                                     V defaultVal)
-            throws  java.io.IOException, ClassNotFoundException {
+    private final Entry<K, V> buildFromSorted(int level, int lo, int hi,
+                                              int redLevel,
+                                              Iterator<?> it,
+                                              java.io.ObjectInputStream str,
+                                              V defaultVal)
+            throws java.io.IOException, ClassNotFoundException {
 
         if (hi < lo) return null;
 
         int mid = (lo + hi) >>> 1;
 
-        Entry<K,V> left  = null;
+        Entry<K, V> left = null;
         if (lo < mid)
-            left = buildFromSorted(level+1, lo, mid - 1, redLevel,
+            left = buildFromSorted(level + 1, lo, mid - 1, redLevel,
                     it, str, defaultVal);
 
         // extract key and/or value from iterator or stream
         K key;
         V value;
         if (it != null) {
-            if (defaultVal==null) {
-                Map.Entry<?,?> entry = (Map.Entry<?,?>)it.next();
-                key = (K)entry.getKey();
-                value = (V)entry.getValue();
+            if (defaultVal == null) {
+                Map.Entry<?, ?> entry = (Map.Entry<?, ?>) it.next();
+                key = (K) entry.getKey();
+                value = (V) entry.getValue();
             } else {
-                key = (K)it.next();
+                key = (K) it.next();
                 value = defaultVal;
             }
         } else { // use stream
@@ -393,7 +394,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
             value = (defaultVal != null ? defaultVal : (V) str.readObject());
         }
 
-        Entry<K,V> middle =  new Entry<>(key, value, null);
+        Entry<K, V> middle = new Entry<>(key, value, null);
 
         // color nodes in non-full bottommost level red
         if (level == redLevel)
@@ -405,7 +406,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         }
 
         if (mid < hi) {
-            Entry<K,V> right = buildFromSorted(level+1, mid+1, hi, redLevel,
+            Entry<K, V> right = buildFromSorted(level + 1, mid + 1, hi, redLevel,
                     it, str, defaultVal);
             middle.right = right;
             right.parent = middle;
@@ -419,14 +420,14 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return 31 - Integer.numberOfLeadingZeros(size + 1);
     }
 
-    static <K> K key(Entry<K,?> e) {
-        if (e==null)
+    static <K> K key(Entry<K, ?> e) {
+        if (e == null)
             throw new NoSuchElementException();
         return e.key;
     }
 
-    final Entry<K,V> getCeilingEntry(K key) {
-        Entry<K,V> p = root;
+    final Entry<K, V> getCeilingEntry(K key) {
+        Entry<K, V> p = root;
         while (p != null) {
             int cmp = compare(key, p.key);
             if (cmp < 0) {
@@ -438,8 +439,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 if (p.right != null) {
                     p = p.right;
                 } else {
-                    Entry<K,V> parent = p.parent;
-                    Entry<K,V> ch = p;
+                    Entry<K, V> parent = p.parent;
+                    Entry<K, V> ch = p;
                     while (parent != null && ch == parent.right) {
                         ch = parent;
                         parent = parent.parent;
@@ -452,8 +453,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    final Entry<K,V> getFloorEntry(K key) {
-        Entry<K,V> p = root;
+    final Entry<K, V> getFloorEntry(K key) {
+        Entry<K, V> p = root;
         while (p != null) {
             int cmp = compare(key, p.key);
             if (cmp > 0) {
@@ -465,8 +466,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 if (p.left != null) {
                     p = p.left;
                 } else {
-                    Entry<K,V> parent = p.parent;
-                    Entry<K,V> ch = p;
+                    Entry<K, V> parent = p.parent;
+                    Entry<K, V> ch = p;
                     while (parent != null && ch == parent.left) {
                         ch = parent;
                         parent = parent.parent;
@@ -480,8 +481,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    final Entry<K,V> getHigherEntry(K key) {
-        Entry<K,V> p = root;
+    final Entry<K, V> getHigherEntry(K key) {
+        Entry<K, V> p = root;
         while (p != null) {
             int cmp = compare(key, p.key);
             if (cmp < 0) {
@@ -493,8 +494,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 if (p.right != null) {
                     p = p.right;
                 } else {
-                    Entry<K,V> parent = p.parent;
-                    Entry<K,V> ch = p;
+                    Entry<K, V> parent = p.parent;
+                    Entry<K, V> ch = p;
                     while (parent != null && ch == parent.right) {
                         ch = parent;
                         parent = parent.parent;
@@ -506,8 +507,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    final Entry<K,V> getLowerEntry(K key) {
-        Entry<K,V> p = root;
+    final Entry<K, V> getLowerEntry(K key) {
+        Entry<K, V> p = root;
         while (p != null) {
             int cmp = compare(key, p.key);
             if (cmp > 0) {
@@ -519,8 +520,8 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 if (p.left != null) {
                     p = p.left;
                 } else {
-                    Entry<K,V> parent = p.parent;
-                    Entry<K,V> ch = p;
+                    Entry<K, V> parent = p.parent;
+                    Entry<K, V> ch = p;
                     while (parent != null && ch == parent.left) {
                         ch = parent;
                         parent = parent.parent;
@@ -533,7 +534,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
     }
 
     public V put(K key, V value) {
-        Entry<K,V> t = root;
+        Entry<K, V> t = root;
         if (t == null) {
             compare(key, key); // type (and possibly null) check
 
@@ -543,7 +544,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
             return null;
         }
         int cmp;
-        Entry<K,V> parent;
+        Entry<K, V> parent;
         // split comparator and comparable paths
         Comparator<? super K> cpr = comparator;
         if (cpr != null) {
@@ -557,8 +558,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                 else
                     return t.setValue(value);
             } while (t != null);
-        }
-        else {
+        } else {
             if (key == null)
                 throw new NullPointerException();
             @SuppressWarnings("unchecked")
@@ -574,7 +574,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                     return t.setValue(value);
             } while (t != null);
         }
-        Entry<K,V> e = new Entry<>(key, value, parent);
+        Entry<K, V> e = new Entry<>(key, value, parent);
         if (cmp < 0)
             parent.left = e;
         else
@@ -585,10 +585,10 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         return null;
     }
 
-    private void fixAfterDeletion(Entry<K,V> x) {
+    private void fixAfterDeletion(Entry<K, V> x) {
         while (x != root && colorOf(x) == BLACK) {
             if (x == leftOf(parentOf(x))) {
-                Entry<K,V> sib = rightOf(parentOf(x));
+                Entry<K, V> sib = rightOf(parentOf(x));
 
                 if (colorOf(sib) == RED) {
                     setColor(sib, BLACK);
@@ -597,7 +597,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                     sib = rightOf(parentOf(x));
                 }
 
-                if (colorOf(leftOf(sib))  == BLACK &&
+                if (colorOf(leftOf(sib)) == BLACK &&
                         colorOf(rightOf(sib)) == BLACK) {
                     setColor(sib, RED);
                     x = parentOf(x);
@@ -615,7 +615,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                     x = root;
                 }
             } else { // symmetric
-                Entry<K,V> sib = leftOf(parentOf(x));
+                Entry<K, V> sib = leftOf(parentOf(x));
 
                 if (colorOf(sib) == RED) {
                     setColor(sib, BLACK);
@@ -647,12 +647,12 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         setColor(x, BLACK);
     }
 
-    private void fixAfterInsertion(Entry<K,V> x) {
+    private void fixAfterInsertion(Entry<K, V> x) {
         x.color = RED;
 
         while (x != null && x != root && x.parent.color == RED) {
             if (parentOf(x) == leftOf(parentOf(parentOf(x)))) {
-                Entry<K,V> y = rightOf(parentOf(parentOf(x)));
+                Entry<K, V> y = rightOf(parentOf(parentOf(x)));
                 if (colorOf(y) == RED) {
                     setColor(parentOf(x), BLACK);
                     setColor(y, BLACK);
@@ -668,7 +668,7 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
                     rotateRight(parentOf(parentOf(x)));
                 }
             } else {
-                Entry<K,V> y = leftOf(parentOf(parentOf(x)));
+                Entry<K, V> y = leftOf(parentOf(parentOf(x)));
                 if (colorOf(y) == RED) {
                     setColor(parentOf(x), BLACK);
                     setColor(y, BLACK);
@@ -688,9 +688,9 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         root.color = BLACK;
     }
 
-    private void rotateRight(Entry<K,V> p) {
+    private void rotateRight(Entry<K, V> p) {
         if (p != null) {
-            Entry<K,V> l = p.left;
+            Entry<K, V> l = p.left;
             p.left = l.right;
             if (l.right != null) l.right.parent = p;
             l.parent = p.parent;
@@ -704,9 +704,9 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         }
     }
 
-    private void rotateLeft(Entry<K,V> p) {
+    private void rotateLeft(Entry<K, V> p) {
         if (p != null) {
-            Entry<K,V> r = p.right;
+            Entry<K, V> r = p.right;
             p.right = r.left;
             if (r.left != null)
                 r.left.parent = p;
@@ -722,47 +722,49 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         }
     }
 
-    private static <K,V> void setColor(Entry<K,V> p, boolean c) {
+    private static <K, V> void setColor(Entry<K, V> p, boolean c) {
         if (p != null)
             p.color = c;
     }
 
-    private static <K,V> boolean colorOf(Entry<K,V> p) {
+    private static <K, V> boolean colorOf(Entry<K, V> p) {
         return (p == null ? BLACK : p.color);
     }
 
-    private static <K,V> Entry<K,V> rightOf(Entry<K,V> p) {
-        return (p == null) ? null: p.right;
+    private static <K, V> Entry<K, V> rightOf(Entry<K, V> p) {
+        return (p == null) ? null : p.right;
     }
 
-    private static <K,V> Entry<K,V> parentOf(Entry<K,V> p) {
-        return (p == null ? null: p.parent);
+    private static <K, V> Entry<K, V> parentOf(Entry<K, V> p) {
+        return (p == null ? null : p.parent);
     }
-    private static <K,V> Entry<K,V> leftOf(Entry<K,V> p) {
-        return (p == null) ? null: p.left;
+
+    private static <K, V> Entry<K, V> leftOf(Entry<K, V> p) {
+        return (p == null) ? null : p.left;
     }
 
     final int compare(Object k1, Object k2) {
-        return comparator==null ? ((Comparable<? super K>)k1).compareTo((K)k2)
-                : comparator.compare((K)k1, (K)k2);
+        return comparator == null ? ((Comparable<? super K>) k1).compareTo((K) k2)
+                : comparator.compare((K) k1, (K) k2);
     }
 
     static final boolean valEquals(Object o1, Object o2) {
-        return (o1==null ? o2==null : o1.equals(o2));
+        return (o1 == null ? o2 == null : o1.equals(o2));
     }
 
-    private static final boolean RED   = false;
+    private static final boolean RED = false;
     private static final boolean BLACK = true;
-    static final class Entry<K,V> implements Map.Entry<K,V> {
+
+    static final class Entry<K, V> implements Map.Entry<K, V> {
         K key;
         V value;
-        Entry<K,V> left;
-        Entry<K,V> right;
-        Entry<K,V> parent;
+        Entry<K, V> left;
+        Entry<K, V> right;
+        Entry<K, V> parent;
         boolean color = BLACK;
 
 
-        Entry(K key, V value, Entry<K,V> parent) {
+        Entry(K key, V value, Entry<K, V> parent) {
             this.key = key;
             this.value = value;
             this.parent = parent;
@@ -788,14 +790,14 @@ public class myTreeMap<K, V> extends AbstractMap<K, V> implements NavigableMap<K
         public boolean equals(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Map.Entry<?,?> e = (Map.Entry<?,?>)o;
+            Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
 
-            return valEquals(key,e.getKey()) && valEquals(value,e.getValue());
+            return valEquals(key, e.getKey()) && valEquals(value, e.getValue());
         }
 
         public int hashCode() {
-            int keyHash = (key==null ? 0 : key.hashCode());
-            int valueHash = (value==null ? 0 : value.hashCode());
+            int keyHash = (key == null ? 0 : key.hashCode());
+            int valueHash = (value == null ? 0 : value.hashCode());
             return keyHash ^ valueHash;
         }
 
