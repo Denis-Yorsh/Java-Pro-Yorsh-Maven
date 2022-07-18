@@ -22,7 +22,6 @@ public class TenUrl {
         List<String> sortingMapToValue = new ArrayList<>(sortingMapToValue(domainEqualsFileList));
         // console output
         System.out.println(sortingMapToValue);
-
     }
 
     private static List<String> fileToList() throws FileNotFoundException {
