@@ -119,7 +119,7 @@ public class TenUrl {
         List<String> stringList = new ArrayList<>(sortingMapToValue.keySet());
         List<Integer> integerList = new ArrayList<>(sortingMapToValue.values());
         int counts = 0;
-        for (int i = 0; i < stringList.size(); i++) {
+        for (int i = 0;; i++) {
             System.out.println(stringList.get(i) + " = " + integerList.get(i));
             counts++;
             if (counts == 10) {
