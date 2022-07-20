@@ -19,15 +19,20 @@ public class TenUrl {
         Map<String, Integer> domainEqualsFileList = new HashMap<>
                 (domainEqualsFileList(getDomainName, emptySorting));
         // Sorting Map and transform to ArrayList
-        List<String> sortingMapToValue = new ArrayList<>(sortingMapToValue(domainEqualsFileList));
+        Map<String, Integer> sortingMapToValue = new LinkedHashMap<>(sortingMapToValue(domainEqualsFileList));
         // console output
-        System.out.println(sortingMapToValue);
+        toPrint(sortingMapToValue);
     }
 
-    private static List<String> fileToList() throws FileNotFoundException {
+    private static List<String> fileToList() {
         File myFirstFile = new File("./Files/ReadFiles/urls.txt");
         List<String> stringList = new ArrayList<>();
-        Scanner scannerFile = new Scanner(myFirstFile);
+        Scanner scannerFile;
+        try {
+            scannerFile = new Scanner(myFirstFile);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         while (scannerFile.hasNextLine()) {
             stringList.add(scannerFile.nextLine());
         }
@@ -94,15 +99,32 @@ public class TenUrl {
         return stringIntegerMap;
     }
 
-    private static List<String> sortingMapToValue(Map<String, Integer> stringIntegerMap) {
-        List sortingList = new ArrayList<>(stringIntegerMap.entrySet());
-        Collections.sort(sortingList, new Comparator<Map.Entry<String, Integer>>() {
+    private static <K, V> Map<String, Integer> sortingMapToValue(Map<K, V> stringIntegerMap) {
+        List<Map.Entry<K, V>> sortingList = new LinkedList<>(stringIntegerMap.entrySet());
+        Collections.sort(sortingList, new Comparator<Map.Entry<K, V>>() {
             @Override
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o2.getValue() - o1.getValue();
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                return (int) o2.getValue() - (int) o1.getValue();
             }
         });
+        Map<String, Integer> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : sortingList) {
+            result.put((String) entry.getKey(), (Integer) entry.getValue());
+        }
 
-        return sortingList;
+        return result;
+    }
+
+    private static void toPrint(Map<String, Integer> sortingMapToValue) {
+        List<String> stringList = new ArrayList<>(sortingMapToValue.keySet());
+        List<Integer> integerList = new ArrayList<>(sortingMapToValue.values());
+        int counts = 0;
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println(stringList.get(i) + " = " + integerList.get(i));
+            counts++;
+            if (counts == 10) {
+                break;
+            }
+        }
     }
 }

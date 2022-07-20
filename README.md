@@ -104,3 +104,9 @@ private static class Ball {
 }
 
 ### Homework 7:
+
+- Пройтись по статье и руками повторить каждый пример. Это важно.
+- https://habr.com/ru/company/golovachcourses/blog/223821/
+- https://habr.com/ru/company/golovachcourses/blog/225585/
+- Для закрепления, повторить данные вариации в своем проекте. Что бы 
+понять как исключения работают.
