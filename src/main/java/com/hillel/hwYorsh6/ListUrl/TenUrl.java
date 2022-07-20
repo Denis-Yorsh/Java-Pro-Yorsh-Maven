@@ -21,7 +21,7 @@ public class TenUrl {
         // Sorting Map and transform to ArrayList
         Map<String, Integer> sortingMapToValue = new LinkedHashMap<>(sortingMapToValue(domainEqualsFileList));
         // console output
-        toPrint(sortingMapToValue);
+        toPrint(sortingMapToValue, 15);
     }
 
     private static List<String> fileToList() {
@@ -115,14 +115,14 @@ public class TenUrl {
         return result;
     }
 
-    private static void toPrint(Map<String, Integer> sortingMapToValue) {
+    private static void toPrint(Map<String, Integer> sortingMapToValue, int count) {
         List<String> stringList = new ArrayList<>(sortingMapToValue.keySet());
         List<Integer> integerList = new ArrayList<>(sortingMapToValue.values());
         int counts = 0;
         for (int i = 0;; i++) {
             System.out.println(stringList.get(i) + " = " + integerList.get(i));
             counts++;
-            if (counts == 10) {
+            if (counts == count) {
                 break;
             }
         }
