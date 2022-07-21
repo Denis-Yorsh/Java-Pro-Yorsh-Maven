@@ -116,15 +116,11 @@ public class TenUrl {
     }
 
     private static void toPrint(Map<String, Integer> sortingMapToValue, int count) {
+        if (count > sortingMapToValue.size() - 1) { count = sortingMapToValue.size() - 1; }
         List<String> stringList = new ArrayList<>(sortingMapToValue.keySet());
         List<Integer> integerList = new ArrayList<>(sortingMapToValue.values());
-        int counts = 0;
-        for (int i = 0;; i++) {
+        for (int i = 0;i < count; i++) {
             System.out.println(stringList.get(i) + " = " + integerList.get(i));
-            counts++;
-            if (counts == count) {
-                break;
-            }
         }
     }
 }
