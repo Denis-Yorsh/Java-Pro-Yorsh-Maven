@@ -31,6 +31,7 @@ public class TenUrl {
         try {
             scannerFile = new Scanner(myFirstFile);
         } catch (FileNotFoundException e) {
+            System.err.println("File is not find!");
             throw new RuntimeException(e);
         }
         while (scannerFile.hasNextLine()) {
